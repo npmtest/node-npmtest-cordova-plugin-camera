@@ -1,6 +1,6 @@
 # npmtest-cordova-plugin-camera
 
-#### test coverage for  [cordova-plugin-camera (v2.4.0)](https://github.com/apache/cordova-plugin-camera#readme)  [![npm package](https://img.shields.io/npm/v/npmtest-cordova-plugin-camera.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-cordova-plugin-camera) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-cordova-plugin-camera.svg)](https://travis-ci.org/npmtest/node-npmtest-cordova-plugin-camera)
+#### basic test coverage for  [cordova-plugin-camera (v2.4.0)](https://github.com/apache/cordova-plugin-camera#readme)  [![npm package](https://img.shields.io/npm/v/npmtest-cordova-plugin-camera.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-cordova-plugin-camera) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-cordova-plugin-camera.svg)](https://travis-ci.org/npmtest/node-npmtest-cordova-plugin-camera)
 
 #### Cordova Camera Plugin
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-cordova-plugin-camera/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-cordova-plugin-camera/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-cordova-plugin-camera/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-cordova-plugin-camera/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-cordova-plugin-camera/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-cordova-plugin-camera/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-cordova-plugin-camera/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-cordova-plugin-camera/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-cordova-plugin-camera/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-cordova-plugin-camera/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-cordova-plugin-camera/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-cordova-plugin-camera/build/coverage.html/index.html)
 
@@ -128,7 +128,8 @@
         "test": "npm run jshint"
     },
     "types": "./types/index.d.ts",
-    "version": "2.4.0"
+    "version": "2.4.0",
+    "bin": {}
 }
 ```
 
