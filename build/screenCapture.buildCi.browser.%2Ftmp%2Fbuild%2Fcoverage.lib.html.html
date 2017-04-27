@@ -1,5 +1,5 @@
 <html lang="en"><head>
-    <title>Code coverage report for node-npmtest-cordova-plugin-camera/node_modules/cordova-plugin-camera/www/CameraPopoverHandle.js</title>
+    <title>Code coverage report for node-npmtest-cordova-plugin-camera/node_modules/cordova-plugin-camera/src/windows/CameraProxy.js</title>
     <meta charset="utf-8">
     <style>
         body, html {
@@ -188,27 +188,27 @@
     </style>
 </head>
 <body>
-<div class="header medium">
+<div class="header low">
     <h1 style="font-weight: bold;">
         <a href="https://github.com/npmtest/node-npmtest-cordova-plugin-camera">npmtest-cordova-plugin-camera (v0.0.1)</a>
     </h1>
-    <h1>Code coverage report for <span class="entity">node-npmtest-cordova-plugin-camera/node_modules/cordova-plugin-camera/www/CameraPopoverHandle.js</span></h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-cordova-plugin-camera/node_modules/cordova-plugin-camera/src/windows/CameraProxy.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">50% <small>(2 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">5.6% <small>(22 / 393)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 141)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">0% <small>(0 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 88)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">50% <small>(2 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">5.6% <small>(22 / 393)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-cordova-plugin-camera/node_modules/cordova-plugin-camera/www/</a> » CameraPopoverHandle.js</div>
+    <div class="path"><a href="../../../../../index.html">All files</a> » <a href="index.html">node-npmtest-cordova-plugin-camera/node_modules/cordova-plugin-camera/src/windows/</a> » CameraProxy.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -245,7 +245,857 @@
 31
 32
 33
-34</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -257,6 +1107,312 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -271,12 +1427,556 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
  *
@@ -299,23 +1999,873 @@
  *
 */
 &nbsp;
-/**
- * @ignore in favour of iOS' one
- * A handle to an image picker popover.
- */
-var CameraPopoverHandle = <span class="fstat-no" title="function not covered">function() {</span>
-<span class="cstat-no" title="statement not covered">    this.setPosition = <span class="fstat-no" title="function not covered">function(popoverOptions) {</span></span>
-<span class="cstat-no" title="statement not covered">        console.log('CameraPopoverHandle.setPosition is only supported on iOS.');</span>
-    };
+/*jshint unused:true, undef:true, browser:true */
+/*global Windows:true, URL:true, module:true, require:true, WinJS:true */
+&nbsp;
+&nbsp;
+var Camera = require('./Camera');
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered">var getAppData = <span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">    return Windows.Storage.ApplicationData.current;</span>
+};
+<span class="cstat-no" title="statement not covered">var encodeToBase64String = <span class="fstat-no" title="function not covered">function (buffer) {</span></span>
+<span class="cstat-no" title="statement not covered">    return Windows.Security.Cryptography.CryptographicBuffer.encodeToBase64String(buffer);</span>
+};
+<span class="cstat-no" title="statement not covered">var OptUnique = Windows.Storage.CreationCollisionOption.generateUniqueName;</span>
+<span class="cstat-no" title="statement not covered">var CapMSType = Windows.Media.Capture.MediaStreamType;</span>
+<span class="cstat-no" title="statement not covered">var webUIApp = Windows.UI.WebUI.WebUIApplication;</span>
+<span class="cstat-no" title="statement not covered">var fileIO = Windows.Storage.FileIO;</span>
+<span class="cstat-no" title="statement not covered">var pickerLocId = Windows.Storage.Pickers.PickerLocationId;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">module.exports = {</span>
+&nbsp;
+    // args will contain :
+    //  ...  it is an array, so be careful
+    // 0 quality:50,
+    // 1 destinationType:Camera.DestinationType.FILE_URI,
+    // 2 sourceType:Camera.PictureSourceType.CAMERA,
+    // 3 targetWidth:-1,
+    // 4 targetHeight:-1,
+    // 5 encodingType:Camera.EncodingType.JPEG,
+    // 6 mediaType:Camera.MediaType.PICTURE,
+    // 7 allowEdit:false,
+    // 8 correctOrientation:false,
+    // 9 saveToPhotoAlbum:false,
+    // 10 popoverOptions:null
+    // 11 cameraDirection:0
+&nbsp;
+    takePicture: <span class="fstat-no" title="function not covered">function (successCallback, errorCallback, args) {</span>
+<span class="cstat-no" title="statement not covered">        var sourceType = args[2];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        if (sourceType != Camera.PictureSourceType.CAMERA) {</span>
+<span class="cstat-no" title="statement not covered">            takePictureFromFile(successCallback, errorCallback, args);</span>
+        } else {
+<span class="cstat-no" title="statement not covered">            takePictureFromCamera(successCallback, errorCallback, args);</span>
+        }
+    }
 };
 &nbsp;
-module.exports = CameraPopoverHandle;
+// https://msdn.microsoft.com/en-us/library/windows/apps/ff462087(v=vs.105).aspx
+<span class="cstat-no" title="statement not covered">var windowsVideoContainers = [".avi", ".flv", ".asx", ".asf", ".mov", ".mp4", ".mpg", ".rm", ".srt", ".swf", ".wmv", ".vob"];</span>
+<span class="cstat-no" title="statement not covered">var windowsPhoneVideoContainers =  [".avi", ".3gp", ".3g2", ".wmv", ".3gp", ".3g2", ".mp4", ".m4v"];</span>
+&nbsp;
+// Default aspect ratio 1.78 (16:9 hd video standard)
+<span class="cstat-no" title="statement not covered">var DEFAULT_ASPECT_RATIO = '1.8';</span>
+&nbsp;
+// Highest possible z-index supported across browsers. Anything used above is converted to this value.
+<span class="cstat-no" title="statement not covered">var HIGHEST_POSSIBLE_Z_INDEX = 2147483647;</span>
+&nbsp;
+// Resize method
+<span class="fstat-no" title="function not covered">function resizeImage(successCallback, errorCallback, file, targetWidth, targetHeight, encodingType) {</span>
+<span class="cstat-no" title="statement not covered">    var tempPhotoFileName = "";</span>
+<span class="cstat-no" title="statement not covered">    var targetContentType = "";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (encodingType == Camera.EncodingType.PNG) {</span>
+<span class="cstat-no" title="statement not covered">        tempPhotoFileName = "camera_cordova_temp_return.png";</span>
+<span class="cstat-no" title="statement not covered">        targetContentType = "image/png";</span>
+    } else {
+<span class="cstat-no" title="statement not covered">        tempPhotoFileName = "camera_cordova_temp_return.jpg";</span>
+<span class="cstat-no" title="statement not covered">        targetContentType = "image/jpeg";</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var storageFolder = getAppData().localFolder;</span>
+<span class="cstat-no" title="statement not covered">    file.copyAsync(storageFolder, file.name, Windows.Storage.NameCollisionOption.replaceExisting)</span>
+        .then(<span class="fstat-no" title="function not covered">function (storageFile) {</span>
+<span class="cstat-no" title="statement not covered">            return fileIO.readBufferAsync(storageFile);</span>
+        })
+        .then(<span class="fstat-no" title="function not covered">function(buffer) {</span>
+<span class="cstat-no" title="statement not covered">            var strBase64 = encodeToBase64String(buffer);</span>
+<span class="cstat-no" title="statement not covered">            var imageData = "data:" + file.contentType + ";base64," + strBase64;</span>
+<span class="cstat-no" title="statement not covered">            var image = new Image();</span>
+<span class="cstat-no" title="statement not covered">            image.src = imageData;</span>
+<span class="cstat-no" title="statement not covered">            image.onload = <span class="fstat-no" title="function not covered">function() {</span></span>
+<span class="cstat-no" title="statement not covered">                var ratio = Math.min(targetWidth / this.width, targetHeight / this.height);</span>
+<span class="cstat-no" title="statement not covered">                var imageWidth = ratio * this.width;</span>
+<span class="cstat-no" title="statement not covered">                var imageHeight = ratio * this.height;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">                var canvas = document.createElement('canvas');</span>
+<span class="cstat-no" title="statement not covered">                var storageFileName;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">                canvas.width = imageWidth;</span>
+<span class="cstat-no" title="statement not covered">                canvas.height = imageHeight;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">                canvas.getContext("2d").drawImage(this, 0, 0, imageWidth, imageHeight);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">                var fileContent = canvas.toDataURL(targetContentType).split(',')[1];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">                var storageFolder = getAppData().localFolder;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">                storageFolder.createFileAsync(tempPhotoFileName, OptUnique)</span>
+                    .then(<span class="fstat-no" title="function not covered">function (storagefile) {</span>
+<span class="cstat-no" title="statement not covered">                        var content = Windows.Security.Cryptography.CryptographicBuffer.decodeFromBase64String(fileContent);</span>
+<span class="cstat-no" title="statement not covered">                        storageFileName = storagefile.name;</span>
+<span class="cstat-no" title="statement not covered">                        return fileIO.writeBufferAsync(storagefile, content);</span>
+                    })
+                    .done(<span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">                        successCallback("ms-appdata:///local/" + storageFileName);</span>
+                    }, errorCallback);
+            };
+        })
+        .done(null, <span class="fstat-no" title="function not covered">function(err) {</span>
+<span class="cstat-no" title="statement not covered">            errorCallback(err);</span>
+        }
+    );
+}
+&nbsp;
+// Because of asynchronous method, so let the successCallback be called in it.
+<span class="fstat-no" title="function not covered">function resizeImageBase64(successCallback, errorCallback, file, targetWidth, targetHeight) {</span>
+<span class="cstat-no" title="statement not covered">    fileIO.readBufferAsync(file).done( <span class="fstat-no" title="function not covered">function(buffer) {</span></span>
+<span class="cstat-no" title="statement not covered">        var strBase64 = encodeToBase64String(buffer);</span>
+<span class="cstat-no" title="statement not covered">        var imageData = "data:" + file.contentType + ";base64," + strBase64;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var image = new Image();</span>
+<span class="cstat-no" title="statement not covered">        image.src = imageData;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        image.onload = <span class="fstat-no" title="function not covered">function() {</span></span>
+<span class="cstat-no" title="statement not covered">            var ratio = Math.min(targetWidth / this.width, targetHeight / this.height);</span>
+<span class="cstat-no" title="statement not covered">            var imageWidth = ratio * this.width;</span>
+<span class="cstat-no" title="statement not covered">            var imageHeight = ratio * this.height;</span>
+<span class="cstat-no" title="statement not covered">            var canvas = document.createElement('canvas');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">            canvas.width = imageWidth;</span>
+<span class="cstat-no" title="statement not covered">            canvas.height = imageHeight;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">            var ctx = canvas.getContext("2d");</span>
+<span class="cstat-no" title="statement not covered">            ctx.drawImage(this, 0, 0, imageWidth, imageHeight);</span>
+&nbsp;
+            // The resized file ready for upload
+<span class="cstat-no" title="statement not covered">            var finalFile = canvas.toDataURL(file.contentType);</span>
+&nbsp;
+            // Remove the prefix such as "data:" + contentType + ";base64," , in order to meet the Cordova API.
+<span class="cstat-no" title="statement not covered">            var arr = finalFile.split(",");</span>
+<span class="cstat-no" title="statement not covered">            var newStr = finalFile.substr(arr[0].length + 1);</span>
+<span class="cstat-no" title="statement not covered">            successCallback(newStr);</span>
+        };
+    }, <span class="fstat-no" title="function not covered">function(err) {</span> <span class="cstat-no" title="statement not covered">errorCallback(err); </span>});
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function takePictureFromFile(successCallback, errorCallback, args) {</span>
+    // Detect Windows Phone
+<span class="cstat-no" title="statement not covered">    if (navigator.appVersion.indexOf('Windows Phone 8.1') &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered">        takePictureFromFileWP(successCallback, errorCallback, args);</span>
+    } else {
+<span class="cstat-no" title="statement not covered">        takePictureFromFileWindows(successCallback, errorCallback, args);</span>
+    }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function takePictureFromFileWP(successCallback, errorCallback, args) {</span>
+<span class="cstat-no" title="statement not covered">    var mediaType = args[6],</span>
+        destinationType = args[1],
+        targetWidth = args[3],
+        targetHeight = args[4],
+        encodingType = args[5];
+&nbsp;
+    /*
+        Need to add and remove an event listener to catch activation state
+        Using FileOpenPicker will suspend the app and it's required to catch the PickSingleFileAndContinue
+        https://msdn.microsoft.com/en-us/library/windows/apps/xaml/dn631755.aspx
+    */
+<span class="cstat-no" title="statement not covered">    var filePickerActivationHandler = <span class="fstat-no" title="function not covered">function(eventArgs) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (eventArgs.kind === Windows.ApplicationModel.Activation.ActivationKind.pickFileContinuation) {</span>
+<span class="cstat-no" title="statement not covered">            var file = eventArgs.files[0];</span>
+<span class="cstat-no" title="statement not covered">            if (!file) {</span>
+<span class="cstat-no" title="statement not covered">                errorCallback("User didn't choose a file.");</span>
+<span class="cstat-no" title="statement not covered">                webUIApp.removeEventListener("activated", filePickerActivationHandler);</span>
+<span class="cstat-no" title="statement not covered">                return;</span>
+            }
+<span class="cstat-no" title="statement not covered">            if (destinationType == Camera.DestinationType.FILE_URI || destinationType == Camera.DestinationType.NATIVE_URI) {</span>
+<span class="cstat-no" title="statement not covered">                if (targetHeight &gt; 0 &amp;&amp; targetWidth &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">                    resizeImage(successCallback, errorCallback, file, targetWidth, targetHeight, encodingType);</span>
+                }
+                else {
+<span class="cstat-no" title="statement not covered">                    var storageFolder = getAppData().localFolder;</span>
+<span class="cstat-no" title="statement not covered">                    file.copyAsync(storageFolder, file.name, Windows.Storage.NameCollisionOption.replaceExisting).done(<span class="fstat-no" title="function not covered">function (storageFile) {</span></span>
+<span class="cstat-no" title="statement not covered">                        if(destinationType == Camera.DestinationType.NATIVE_URI) {</span>
+<span class="cstat-no" title="statement not covered">                            successCallback("ms-appdata:///local/" + storageFile.name);</span>
+                        }
+                        else {
+<span class="cstat-no" title="statement not covered">                            successCallback(URL.createObjectURL(storageFile));</span>
+                        }
+                    }, <span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">                        errorCallback("Can't access localStorage folder.");</span>
+                    });
+                }
+            }
+            else {
+<span class="cstat-no" title="statement not covered">                if (targetHeight &gt; 0 &amp;&amp; targetWidth &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">                    resizeImageBase64(successCallback, errorCallback, file, targetWidth, targetHeight);</span>
+                } else {
+<span class="cstat-no" title="statement not covered">                    fileIO.readBufferAsync(file).done(<span class="fstat-no" title="function not covered">function (buffer) {</span></span>
+<span class="cstat-no" title="statement not covered">                        var strBase64 =encodeToBase64String(buffer);</span>
+<span class="cstat-no" title="statement not covered">                        successCallback(strBase64);</span>
+                    }, errorCallback);
+                }
+            }
+<span class="cstat-no" title="statement not covered">            webUIApp.removeEventListener("activated", filePickerActivationHandler);</span>
+        }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var fileOpenPicker = new Windows.Storage.Pickers.FileOpenPicker();</span>
+<span class="cstat-no" title="statement not covered">    if (mediaType == Camera.MediaType.PICTURE) {</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.fileTypeFilter.replaceAll([".png", ".jpg", ".jpeg"]);</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.suggestedStartLocation = pickerLocId.picturesLibrary;</span>
+    }
+    else <span class="cstat-no" title="statement not covered">if (mediaType == Camera.MediaType.VIDEO) {</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.fileTypeFilter.replaceAll(windowsPhoneVideoContainers);</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.suggestedStartLocation = pickerLocId.videosLibrary;</span>
+    }
+    else {
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.fileTypeFilter.replaceAll(["*"]);</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.suggestedStartLocation = pickerLocId.documentsLibrary;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    webUIApp.addEventListener("activated", filePickerActivationHandler);</span>
+<span class="cstat-no" title="statement not covered">    fileOpenPicker.pickSingleFileAndContinue();</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function takePictureFromFileWindows(successCallback, errorCallback, args) {</span>
+<span class="cstat-no" title="statement not covered">    var mediaType = args[6],</span>
+        destinationType = args[1],
+        targetWidth = args[3],
+        targetHeight = args[4],
+        encodingType = args[5];
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var fileOpenPicker = new Windows.Storage.Pickers.FileOpenPicker();</span>
+<span class="cstat-no" title="statement not covered">    if (mediaType == Camera.MediaType.PICTURE) {</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.fileTypeFilter.replaceAll([".png", ".jpg", ".jpeg"]);</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.suggestedStartLocation = pickerLocId.picturesLibrary;</span>
+    }
+    else <span class="cstat-no" title="statement not covered">if (mediaType == Camera.MediaType.VIDEO) {</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.fileTypeFilter.replaceAll(windowsVideoContainers);</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.suggestedStartLocation = pickerLocId.videosLibrary;</span>
+    }
+    else {
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.fileTypeFilter.replaceAll(["*"]);</span>
+<span class="cstat-no" title="statement not covered">        fileOpenPicker.suggestedStartLocation = pickerLocId.documentsLibrary;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    fileOpenPicker.pickSingleFileAsync().done(<span class="fstat-no" title="function not covered">function (file) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (!file) {</span>
+<span class="cstat-no" title="statement not covered">            errorCallback("User didn't choose a file.");</span>
+<span class="cstat-no" title="statement not covered">            return;</span>
+        }
+<span class="cstat-no" title="statement not covered">        if (destinationType == Camera.DestinationType.FILE_URI || destinationType == Camera.DestinationType.NATIVE_URI) {</span>
+<span class="cstat-no" title="statement not covered">            if (targetHeight &gt; 0 &amp;&amp; targetWidth &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">                resizeImage(successCallback, errorCallback, file, targetWidth, targetHeight, encodingType);</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered">                var storageFolder = getAppData().localFolder;</span>
+<span class="cstat-no" title="statement not covered">                file.copyAsync(storageFolder, file.name, Windows.Storage.NameCollisionOption.replaceExisting).done(<span class="fstat-no" title="function not covered">function (storageFile) {</span></span>
+<span class="cstat-no" title="statement not covered">                        if(destinationType == Camera.DestinationType.NATIVE_URI) {</span>
+<span class="cstat-no" title="statement not covered">                            successCallback("ms-appdata:///local/" + storageFile.name);</span>
+                        }
+                        else {
+<span class="cstat-no" title="statement not covered">                            successCallback(URL.createObjectURL(storageFile));</span>
+                        }
+                }, <span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">                    errorCallback("Can't access localStorage folder.");</span>
+                });
+            }
+        }
+        else {
+<span class="cstat-no" title="statement not covered">            if (targetHeight &gt; 0 &amp;&amp; targetWidth &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">                resizeImageBase64(successCallback, errorCallback, file, targetWidth, targetHeight);</span>
+            } else {
+<span class="cstat-no" title="statement not covered">                fileIO.readBufferAsync(file).done(<span class="fstat-no" title="function not covered">function (buffer) {</span></span>
+<span class="cstat-no" title="statement not covered">                    var strBase64 =encodeToBase64String(buffer);</span>
+<span class="cstat-no" title="statement not covered">                    successCallback(strBase64);</span>
+                }, errorCallback);
+            }
+        }
+    }, <span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">        errorCallback("User didn't choose a file.");</span>
+    });
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function takePictureFromCamera(successCallback, errorCallback, args) {</span>
+    // Check if necessary API available
+<span class="cstat-no" title="statement not covered">    if (!Windows.Media.Capture.CameraCaptureUI) {</span>
+<span class="cstat-no" title="statement not covered">        takePictureFromCameraWP(successCallback, errorCallback, args);</span>
+    } else {
+<span class="cstat-no" title="statement not covered">        takePictureFromCameraWindows(successCallback, errorCallback, args);</span>
+    }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function takePictureFromCameraWP(successCallback, errorCallback, args) {</span>
+    // We are running on WP8.1 which lacks CameraCaptureUI class
+    // so we need to use MediaCapture class instead and implement custom UI for camera
+<span class="cstat-no" title="statement not covered">    var destinationType = args[1],</span>
+        targetWidth = args[3],
+        targetHeight = args[4],
+        encodingType = args[5],
+        saveToPhotoAlbum = args[9],
+        cameraDirection = args[11],
+        capturePreview = null,
+        cameraCaptureButton = null,
+        cameraCancelButton = null,
+        capture = null,
+        captureSettings = null,
+        CaptureNS = Windows.Media.Capture,
+        sensor = null;
+&nbsp;
+<span class="fstat-no" title="function not covered">    function createCameraUI() {</span>
+        // create style for take and cancel buttons
+<span class="cstat-no" title="statement not covered">        var buttonStyle = "width:45%;padding: 10px 16px;font-size: 18px;line-height: 1.3333333;color: #333;background-color: #fff;border-color: #ccc; border: 1px solid transparent;border-radius: 6px; display: block; margin: 20px; z-index: 1000;border-color: #adadad;";</span>
+&nbsp;
+        // Create fullscreen preview
+        // z-order style element for capturePreview and cameraCancelButton elts
+        // is necessary to avoid overriding by another page elements, -1 sometimes is not enough
+<span class="cstat-no" title="statement not covered">        capturePreview = document.createElement("video");</span>
+<span class="cstat-no" title="statement not covered">        capturePreview.style.cssText = "position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: " + (HIGHEST_POSSIBLE_Z_INDEX - 1) + ";";</span>
+&nbsp;
+        // Create capture button
+<span class="cstat-no" title="statement not covered">        cameraCaptureButton = document.createElement("button");</span>
+<span class="cstat-no" title="statement not covered">        cameraCaptureButton.innerText = "Take";</span>
+<span class="cstat-no" title="statement not covered">        cameraCaptureButton.style.cssText = buttonStyle + "position: fixed; left: 0; bottom: 0; margin: 20px; z-index: " + HIGHEST_POSSIBLE_Z_INDEX + ";";</span>
+&nbsp;
+        // Create cancel button
+<span class="cstat-no" title="statement not covered">        cameraCancelButton = document.createElement("button");</span>
+<span class="cstat-no" title="statement not covered">        cameraCancelButton.innerText = "Cancel";</span>
+<span class="cstat-no" title="statement not covered">        cameraCancelButton.style.cssText = buttonStyle + "position: fixed; right: 0; bottom: 0; margin: 20px; z-index: " + HIGHEST_POSSIBLE_Z_INDEX + ";";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        capture = new CaptureNS.MediaCapture();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        captureSettings = new CaptureNS.MediaCaptureInitializationSettings();</span>
+<span class="cstat-no" title="statement not covered">        captureSettings.streamingCaptureMode = CaptureNS.StreamingCaptureMode.video;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function continueVideoOnFocus() {</span>
+        // if preview is defined it would be stuck, play it
+<span class="cstat-no" title="statement not covered">        if (capturePreview) {</span>
+<span class="cstat-no" title="statement not covered">            capturePreview.play();</span>
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function startCameraPreview() {</span>
+        // Search for available camera devices
+        // This is necessary to detect which camera (front or back) we should use
+<span class="cstat-no" title="statement not covered">        var DeviceEnum = Windows.Devices.Enumeration;</span>
+<span class="cstat-no" title="statement not covered">        var expectedPanel = cameraDirection === 1 ? DeviceEnum.Panel.front : DeviceEnum.Panel.back;</span>
+&nbsp;
+        // Add focus event handler to capture the event when user suspends the app and comes back while the preview is on
+<span class="cstat-no" title="statement not covered">        window.addEventListener("focus", continueVideoOnFocus);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        DeviceEnum.DeviceInformation.findAllAsync(DeviceEnum.DeviceClass.videoCapture).then(<span class="fstat-no" title="function not covered">function (devices) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (devices.length &lt;= 0) {</span>
+<span class="cstat-no" title="statement not covered">                destroyCameraPreview();</span>
+<span class="cstat-no" title="statement not covered">                errorCallback('Camera not found');</span>
+<span class="cstat-no" title="statement not covered">                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered">            devices.forEach(<span class="fstat-no" title="function not covered">function(currDev) {</span></span>
+<span class="cstat-no" title="statement not covered">                if (currDev.enclosureLocation.panel &amp;&amp; currDev.enclosureLocation.panel == expectedPanel) {</span>
+<span class="cstat-no" title="statement not covered">                    captureSettings.videoDeviceId = currDev.id;</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered">            captureSettings.photoCaptureSource = Windows.Media.Capture.PhotoCaptureSource.photo;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">            return capture.initializeAsync(captureSettings);</span>
+        }).then(<span class="fstat-no" title="function not covered">function () {</span>
+&nbsp;
+            // create focus control if available
+<span class="cstat-no" title="statement not covered">            var VideoDeviceController = capture.videoDeviceController;</span>
+<span class="cstat-no" title="statement not covered">            var FocusControl = VideoDeviceController.focusControl;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">            if (FocusControl.supported === true) {</span>
+<span class="cstat-no" title="statement not covered">                capturePreview.addEventListener('click', <span class="fstat-no" title="function not covered">function () {</span></span>
+                    // Make sure function isn't called again before previous focus is completed
+<span class="cstat-no" title="statement not covered">                    if (this.getAttribute('clicked') === '1') {</span>
+<span class="cstat-no" title="statement not covered">                        return false;</span>
+                    } else {
+<span class="cstat-no" title="statement not covered">                        this.setAttribute('clicked', '1');</span>
+                    }
+<span class="cstat-no" title="statement not covered">                    var preset = Windows.Media.Devices.FocusPreset.autoNormal;</span>
+<span class="cstat-no" title="statement not covered">                    var parent = this;</span>
+<span class="cstat-no" title="statement not covered">                    FocusControl.setPresetAsync(preset).done(<span class="fstat-no" title="function not covered">function () {</span></span>
+                        // set the clicked attribute back to '0' to allow focus again
+<span class="cstat-no" title="statement not covered">                        parent.setAttribute('clicked', '0');</span>
+                    });
+                });
+            }
+&nbsp;
+            // msdn.microsoft.com/en-us/library/windows/apps/hh452807.aspx
+<span class="cstat-no" title="statement not covered">            capturePreview.msZoom = true;</span>
+<span class="cstat-no" title="statement not covered">            capturePreview.src = URL.createObjectURL(capture);</span>
+<span class="cstat-no" title="statement not covered">            capturePreview.play();</span>
+&nbsp;
+            // Bind events to controls
+<span class="cstat-no" title="statement not covered">            sensor = Windows.Devices.Sensors.SimpleOrientationSensor.getDefault();</span>
+<span class="cstat-no" title="statement not covered">            if (sensor !== null) {</span>
+<span class="cstat-no" title="statement not covered">                sensor.addEventListener("orientationchanged", onOrientationChange);</span>
+            }
+&nbsp;
+            // add click events to capture and cancel buttons
+<span class="cstat-no" title="statement not covered">            cameraCaptureButton.addEventListener('click', onCameraCaptureButtonClick);</span>
+<span class="cstat-no" title="statement not covered">            cameraCancelButton.addEventListener('click', onCameraCancelButtonClick);</span>
+&nbsp;
+            // Change default orientation
+<span class="cstat-no" title="statement not covered">            if (sensor) {</span>
+<span class="cstat-no" title="statement not covered">                setPreviewRotation(sensor.getCurrentOrientation());</span>
+            } else {
+<span class="cstat-no" title="statement not covered">                setPreviewRotation(Windows.Graphics.Display.DisplayInformation.getForCurrentView().currentOrientation);</span>
+            }
+&nbsp;
+            // Get available aspect ratios
+<span class="cstat-no" title="statement not covered">            var aspectRatios = getAspectRatios(capture);</span>
+&nbsp;
+            // Couldn't find a good ratio
+<span class="cstat-no" title="statement not covered">            if (aspectRatios.length === 0) {</span>
+<span class="cstat-no" title="statement not covered">                destroyCameraPreview();</span>
+<span class="cstat-no" title="statement not covered">                errorCallback('There\'s not a good aspect ratio available');</span>
+<span class="cstat-no" title="statement not covered">                return;</span>
+            }
+&nbsp;
+            // add elements to body
+<span class="cstat-no" title="statement not covered">            document.body.appendChild(capturePreview);</span>
+<span class="cstat-no" title="statement not covered">            document.body.appendChild(cameraCaptureButton);</span>
+<span class="cstat-no" title="statement not covered">            document.body.appendChild(cameraCancelButton);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">            if (aspectRatios.indexOf(DEFAULT_ASPECT_RATIO) &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered">                return setAspectRatio(capture, DEFAULT_ASPECT_RATIO);</span>
+            } else {
+                // Doesn't support 16:9 - pick next best
+<span class="cstat-no" title="statement not covered">                return setAspectRatio(capture, aspectRatios[0]);</span>
+            }
+        }).done(null, <span class="fstat-no" title="function not covered">function (err) {</span>
+<span class="cstat-no" title="statement not covered">            destroyCameraPreview();</span>
+<span class="cstat-no" title="statement not covered">            errorCallback('Camera intitialization error ' + err);</span>
+        });
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function destroyCameraPreview() {</span>
+        // If sensor is available, remove event listener
+<span class="cstat-no" title="statement not covered">        if (sensor !== null) {</span>
+<span class="cstat-no" title="statement not covered">            sensor.removeEventListener('orientationchanged', onOrientationChange);</span>
+        }
+&nbsp;
+        // Pause and dispose preview element
+<span class="cstat-no" title="statement not covered">        capturePreview.pause();</span>
+<span class="cstat-no" title="statement not covered">        capturePreview.src = null;</span>
+&nbsp;
+        // Remove event listeners from buttons
+<span class="cstat-no" title="statement not covered">        cameraCaptureButton.removeEventListener('click', onCameraCaptureButtonClick);</span>
+<span class="cstat-no" title="statement not covered">        cameraCancelButton.removeEventListener('click', onCameraCancelButtonClick);</span>
+&nbsp;
+        // Remove the focus event handler
+<span class="cstat-no" title="statement not covered">        window.removeEventListener("focus", continueVideoOnFocus);</span>
+&nbsp;
+        // Remove elements
+<span class="cstat-no" title="statement not covered">        [capturePreview, cameraCaptureButton, cameraCancelButton].forEach(<span class="fstat-no" title="function not covered">function (elem) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (elem /* &amp;&amp; elem in document.body.childNodes */) {</span>
+<span class="cstat-no" title="statement not covered">                document.body.removeChild(elem);</span>
+            }
+        });
+&nbsp;
+        // Stop and dispose media capture manager
+<span class="cstat-no" title="statement not covered">        if (capture) {</span>
+<span class="cstat-no" title="statement not covered">            capture.stopRecordAsync();</span>
+<span class="cstat-no" title="statement not covered">            capture = null;</span>
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function captureAction() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var encodingProperties,</span>
+            fileName,
+            tempFolder = getAppData().temporaryFolder;
+&nbsp;
+<span class="cstat-no" title="statement not covered">        if (encodingType == Camera.EncodingType.PNG) {</span>
+<span class="cstat-no" title="statement not covered">            fileName = 'photo.png';</span>
+<span class="cstat-no" title="statement not covered">            encodingProperties = Windows.Media.MediaProperties.ImageEncodingProperties.createPng();</span>
+        } else {
+<span class="cstat-no" title="statement not covered">            fileName = 'photo.jpg';</span>
+<span class="cstat-no" title="statement not covered">            encodingProperties = Windows.Media.MediaProperties.ImageEncodingProperties.createJpeg();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered">        tempFolder.createFileAsync(fileName, OptUnique)</span>
+            .then(<span class="fstat-no" title="function not covered">function(tempCapturedFile) {</span>
+<span class="cstat-no" title="statement not covered">                return new WinJS.Promise(<span class="fstat-no" title="function not covered">function (complete) {</span></span>
+<span class="cstat-no" title="statement not covered">                    var photoStream = new Windows.Storage.Streams.InMemoryRandomAccessStream();</span>
+<span class="cstat-no" title="statement not covered">                    var finalStream = new Windows.Storage.Streams.InMemoryRandomAccessStream();</span>
+<span class="cstat-no" title="statement not covered">                    capture.capturePhotoToStreamAsync(encodingProperties, photoStream)</span>
+                        .then(<span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">                            return Windows.Graphics.Imaging.BitmapDecoder.createAsync(photoStream);</span>
+                        })
+                        .then(<span class="fstat-no" title="function not covered">function(dec) {</span>
+<span class="cstat-no" title="statement not covered">                            finalStream.size = 0; </span>// BitmapEncoder requires the output stream to be empty
+<span class="cstat-no" title="statement not covered">                            return Windows.Graphics.Imaging.BitmapEncoder.createForTranscodingAsync(finalStream, dec);</span>
+                        })
+                        .then(<span class="fstat-no" title="function not covered">function(enc) {</span>
+                            // We need to rotate the photo wrt sensor orientation
+<span class="cstat-no" title="statement not covered">                            enc.bitmapTransform.rotation = orientationToRotation(sensor.getCurrentOrientation());</span>
+<span class="cstat-no" title="statement not covered">                            return enc.flushAsync();</span>
+                        })
+                        .then(<span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">                            return tempCapturedFile.openAsync(Windows.Storage.FileAccessMode.readWrite);</span>
+                        })
+                        .then(<span class="fstat-no" title="function not covered">function(fileStream) {</span>
+<span class="cstat-no" title="statement not covered">                            return Windows.Storage.Streams.RandomAccessStream.copyAndCloseAsync(finalStream, fileStream);</span>
+                        })
+                        .done(<span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">                            photoStream.close();</span>
+<span class="cstat-no" title="statement not covered">                            finalStream.close();</span>
+<span class="cstat-no" title="statement not covered">                            complete(tempCapturedFile);</span>
+                        }, <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">                            photoStream.close();</span>
+<span class="cstat-no" title="statement not covered">                            finalStream.close();</span>
+<span class="cstat-no" title="statement not covered">                            throw new Error("An error has occured while capturing the photo.");</span>
+                        });
+                });
+            })
+            .done(<span class="fstat-no" title="function not covered">function(capturedFile) {</span>
+<span class="cstat-no" title="statement not covered">                destroyCameraPreview();</span>
+<span class="cstat-no" title="statement not covered">                savePhoto(capturedFile, {</span>
+                    destinationType: destinationType,
+                    targetHeight: targetHeight,
+                    targetWidth: targetWidth,
+                    encodingType: encodingType,
+                    saveToPhotoAlbum: saveToPhotoAlbum
+                }, successCallback, errorCallback);
+            }, <span class="fstat-no" title="function not covered">function(err) {</span>
+<span class="cstat-no" title="statement not covered">                destroyCameraPreview();</span>
+<span class="cstat-no" title="statement not covered">                errorCallback(err);</span>
+            });
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function getAspectRatios(capture) {</span>
+<span class="cstat-no" title="statement not covered">        var videoDeviceController = capture.videoDeviceController;</span>
+<span class="cstat-no" title="statement not covered">        var photoAspectRatios = videoDeviceController.getAvailableMediaStreamProperties(CapMSType.photo).map(<span class="fstat-no" title="function not covered">function (element) {</span></span>
+<span class="cstat-no" title="statement not covered">            return (element.width / element.height).toFixed(1);</span>
+        }).filter(<span class="fstat-no" title="function not covered">function (element, index, array) {</span> <span class="cstat-no" title="statement not covered">return (index === array.indexOf(element)); </span>});
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var videoAspectRatios = videoDeviceController.getAvailableMediaStreamProperties(CapMSType.videoRecord).map(<span class="fstat-no" title="function not covered">function (element) {</span></span>
+<span class="cstat-no" title="statement not covered">            return (element.width / element.height).toFixed(1);</span>
+        }).filter(<span class="fstat-no" title="function not covered">function (element, index, array) {</span> <span class="cstat-no" title="statement not covered">return (index === array.indexOf(element)); </span>});
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var videoPreviewAspectRatios = videoDeviceController.getAvailableMediaStreamProperties(CapMSType.videoPreview).map(<span class="fstat-no" title="function not covered">function (element) {</span></span>
+<span class="cstat-no" title="statement not covered">            return (element.width / element.height).toFixed(1);</span>
+        }).filter(<span class="fstat-no" title="function not covered">function (element, index, array) {</span> <span class="cstat-no" title="statement not covered">return (index === array.indexOf(element)); </span>});
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var allAspectRatios = [].concat(photoAspectRatios, videoAspectRatios, videoPreviewAspectRatios);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var aspectObj = allAspectRatios.reduce(<span class="fstat-no" title="function not covered">function (map, item) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (!map[item]) {</span>
+<span class="cstat-no" title="statement not covered">                map[item] = 0;</span>
+            }
+<span class="cstat-no" title="statement not covered">            map[item]++;</span>
+<span class="cstat-no" title="statement not covered">            return map;</span>
+        }, {});
+&nbsp;
+<span class="cstat-no" title="statement not covered">        return Object.keys(aspectObj).filter(<span class="fstat-no" title="function not covered">function (k) {</span></span>
+<span class="cstat-no" title="statement not covered">            return aspectObj[k] === 3;</span>
+        });
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function setAspectRatio(capture, aspect) {</span>
+        // Max photo resolution with desired aspect ratio
+<span class="cstat-no" title="statement not covered">        var videoDeviceController = capture.videoDeviceController;</span>
+<span class="cstat-no" title="statement not covered">        var photoResolution = videoDeviceController.getAvailableMediaStreamProperties(CapMSType.photo)</span>
+            .filter(<span class="fstat-no" title="function not covered">function (elem) {</span>
+<span class="cstat-no" title="statement not covered">                return ((elem.width / elem.height).toFixed(1) === aspect);</span>
+            })
+            .reduce(<span class="fstat-no" title="function not covered">function (prop1, prop2) {</span>
+<span class="cstat-no" title="statement not covered">                return (prop1.width * prop1.height) &gt; (prop2.width * prop2.height) ? prop1 : prop2;</span>
+            });
+&nbsp;
+        // Max video resolution with desired aspect ratio
+<span class="cstat-no" title="statement not covered">        var videoRecordResolution = videoDeviceController.getAvailableMediaStreamProperties(CapMSType.videoRecord)</span>
+            .filter(<span class="fstat-no" title="function not covered">function (elem) {</span>
+<span class="cstat-no" title="statement not covered">                return ((elem.width / elem.height).toFixed(1) === aspect);</span>
+            })
+            .reduce(<span class="fstat-no" title="function not covered">function (prop1, prop2) {</span>
+<span class="cstat-no" title="statement not covered">                return (prop1.width * prop1.height) &gt; (prop2.width * prop2.height) ? prop1 : prop2;</span>
+            });
+&nbsp;
+        // Max video preview resolution with desired aspect ratio
+<span class="cstat-no" title="statement not covered">        var videoPreviewResolution = videoDeviceController.getAvailableMediaStreamProperties(CapMSType.videoPreview)</span>
+            .filter(<span class="fstat-no" title="function not covered">function (elem) {</span>
+<span class="cstat-no" title="statement not covered">                return ((elem.width / elem.height).toFixed(1) === aspect);</span>
+            })
+            .reduce(<span class="fstat-no" title="function not covered">function (prop1, prop2) {</span>
+<span class="cstat-no" title="statement not covered">                return (prop1.width * prop1.height) &gt; (prop2.width * prop2.height) ? prop1 : prop2;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered">        return videoDeviceController.setMediaStreamPropertiesAsync(CapMSType.photo, photoResolution)</span>
+            .then(<span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">                return videoDeviceController.setMediaStreamPropertiesAsync(CapMSType.videoPreview, videoPreviewResolution);</span>
+            })
+            .then(<span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">                return videoDeviceController.setMediaStreamPropertiesAsync(CapMSType.videoRecord, videoRecordResolution);</span>
+            });
+    }
+&nbsp;
+    /**
+     * When Capture button is clicked, try to capture a picture and return
+     */
+<span class="fstat-no" title="function not covered">    function onCameraCaptureButtonClick() {</span>
+        // Make sure user can't click more than once
+<span class="cstat-no" title="statement not covered">        if (this.getAttribute('clicked') === '1') {</span>
+<span class="cstat-no" title="statement not covered">            return false;</span>
+        } else {
+<span class="cstat-no" title="statement not covered">            this.setAttribute('clicked', '1');</span>
+        }
+<span class="cstat-no" title="statement not covered">        captureAction();</span>
+    }
+&nbsp;
+    /**
+     * When Cancel button is clicked, destroy camera preview and return with error callback
+     */
+<span class="fstat-no" title="function not covered">    function onCameraCancelButtonClick() {</span>
+        // Make sure user can't click more than once
+<span class="cstat-no" title="statement not covered">        if (this.getAttribute('clicked') === '1') {</span>
+<span class="cstat-no" title="statement not covered">            return false;</span>
+        } else {
+<span class="cstat-no" title="statement not covered">            this.setAttribute('clicked', '1');</span>
+        }
+<span class="cstat-no" title="statement not covered">        destroyCameraPreview();</span>
+<span class="cstat-no" title="statement not covered">        errorCallback('no image selected');</span>
+    }
+&nbsp;
+    /**
+     * When the phone orientation change, get the event and change camera preview rotation
+     * @param  {Object} e - SimpleOrientationSensorOrientationChangedEventArgs
+     */
+<span class="fstat-no" title="function not covered">    function onOrientationChange(e) {</span>
+<span class="cstat-no" title="statement not covered">        setPreviewRotation(e.orientation);</span>
+    }
+&nbsp;
+    /**
+     * Converts SimpleOrientation to a VideoRotation to remove difference between camera sensor orientation
+     * and video orientation
+     * @param  {number} orientation - Windows.Devices.Sensors.SimpleOrientation
+     * @return {number} - Windows.Media.Capture.VideoRotation
+     */
+<span class="fstat-no" title="function not covered">    function orientationToRotation(orientation) {</span>
+        // VideoRotation enumerable and BitmapRotation enumerable have the same values
+        // https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.capture.videorotation.aspx
+        // https://msdn.microsoft.com/en-us/library/windows/apps/windows.graphics.imaging.bitmaprotation.aspx
+&nbsp;
+<span class="cstat-no" title="statement not covered">        switch (orientation) {</span>
+            // portrait
+            case Windows.Devices.Sensors.SimpleOrientation.notRotated:
+<span class="cstat-no" title="statement not covered">                return Windows.Media.Capture.VideoRotation.clockwise90Degrees;</span>
+            // landscape
+            case Windows.Devices.Sensors.SimpleOrientation.rotated90DegreesCounterclockwise:
+<span class="cstat-no" title="statement not covered">                return Windows.Media.Capture.VideoRotation.none;</span>
+            // portrait-flipped (not supported by WinPhone Apps)
+            case Windows.Devices.Sensors.SimpleOrientation.rotated180DegreesCounterclockwise:
+                // Falling back to portrait default
+<span class="cstat-no" title="statement not covered">                return Windows.Media.Capture.VideoRotation.clockwise90Degrees;</span>
+            // landscape-flipped
+            case Windows.Devices.Sensors.SimpleOrientation.rotated270DegreesCounterclockwise:
+<span class="cstat-no" title="statement not covered">                return Windows.Media.Capture.VideoRotation.clockwise180Degrees;</span>
+            // faceup &amp; facedown
+            default:
+                // Falling back to portrait default
+<span class="cstat-no" title="statement not covered">                return Windows.Media.Capture.VideoRotation.clockwise90Degrees;</span>
+        }
+    }
+&nbsp;
+    /**
+     * Rotates the current MediaCapture's video
+     * @param {number} orientation - Windows.Devices.Sensors.SimpleOrientation
+     */
+<span class="fstat-no" title="function not covered">    function setPreviewRotation(orientation) {</span>
+<span class="cstat-no" title="statement not covered">        capture.setPreviewRotation(orientationToRotation(orientation));</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    try {</span>
+<span class="cstat-no" title="statement not covered">        createCameraUI();</span>
+<span class="cstat-no" title="statement not covered">        startCameraPreview();</span>
+    } catch (ex) {
+<span class="cstat-no" title="statement not covered">        errorCallback(ex);</span>
+    }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function takePictureFromCameraWindows(successCallback, errorCallback, args) {</span>
+<span class="cstat-no" title="statement not covered">    var destinationType = args[1],</span>
+        targetWidth = args[3],
+        targetHeight = args[4],
+        encodingType = args[5],
+        allowCrop = !!args[7],
+        saveToPhotoAlbum = args[9],
+        WMCapture = Windows.Media.Capture,
+        cameraCaptureUI = new WMCapture.CameraCaptureUI();
+&nbsp;
+<span class="cstat-no" title="statement not covered">    cameraCaptureUI.photoSettings.allowCropping = allowCrop;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (encodingType == Camera.EncodingType.PNG) {</span>
+<span class="cstat-no" title="statement not covered">        cameraCaptureUI.photoSettings.format = WMCapture.CameraCaptureUIPhotoFormat.png;</span>
+    } else {
+<span class="cstat-no" title="statement not covered">        cameraCaptureUI.photoSettings.format = WMCapture.CameraCaptureUIPhotoFormat.jpeg;</span>
+    }
+&nbsp;
+    // decide which max pixels should be supported by targetWidth or targetHeight.
+<span class="cstat-no" title="statement not covered">    var maxRes = null;</span>
+<span class="cstat-no" title="statement not covered">    var UIMaxRes = WMCapture.CameraCaptureUIMaxPhotoResolution;</span>
+<span class="cstat-no" title="statement not covered">    var totalPixels = targetWidth * targetHeight;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (targetWidth == -1 &amp;&amp; targetHeight == -1) {</span>
+<span class="cstat-no" title="statement not covered">        maxRes = UIMaxRes.highestAvailable;</span>
+    }
+    // Temp fix for CB-10539
+    /*else if (totalPixels &lt;= 320 * 240) {
+        maxRes = UIMaxRes.verySmallQvga;
+    }*/
+    else <span class="cstat-no" title="statement not covered">if (totalPixels &lt;= 640 * 480) {</span>
+<span class="cstat-no" title="statement not covered">        maxRes = UIMaxRes.smallVga;</span>
+    } else <span class="cstat-no" title="statement not covered">if (totalPixels &lt;= 1024 * 768) {</span>
+<span class="cstat-no" title="statement not covered">        maxRes = UIMaxRes.mediumXga;</span>
+    } else <span class="cstat-no" title="statement not covered">if (totalPixels &lt;= 3 * 1000 * 1000) {</span>
+<span class="cstat-no" title="statement not covered">        maxRes = UIMaxRes.large3M;</span>
+    } else <span class="cstat-no" title="statement not covered">if (totalPixels &lt;= 5 * 1000 * 1000) {</span>
+<span class="cstat-no" title="statement not covered">        maxRes = UIMaxRes.veryLarge5M;</span>
+    } else {
+<span class="cstat-no" title="statement not covered">        maxRes = UIMaxRes.highestAvailable;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    cameraCaptureUI.photoSettings.maxResolution = maxRes;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var cameraPicture;</span>
+&nbsp;
+    // define focus handler for windows phone 10.0
+<span class="cstat-no" title="statement not covered">    var savePhotoOnFocus = <span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">        window.removeEventListener("focus", savePhotoOnFocus);</span>
+        // call only when the app is in focus again
+<span class="cstat-no" title="statement not covered">        savePhoto(cameraPicture, {</span>
+            destinationType: destinationType,
+            targetHeight: targetHeight,
+            targetWidth: targetWidth,
+            encodingType: encodingType,
+            saveToPhotoAlbum: saveToPhotoAlbum
+        }, successCallback, errorCallback);
+    };
+&nbsp;
+    // if windows phone 10, add and delete focus eventHandler to capture the focus back from cameraUI to app
+<span class="cstat-no" title="statement not covered">    if (navigator.appVersion.indexOf('Windows Phone 10.0') &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered">        window.addEventListener("focus", savePhotoOnFocus);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    cameraCaptureUI.captureFileAsync(WMCapture.CameraCaptureUIMode.photo).done(<span class="fstat-no" title="function not covered">function (picture) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (!picture) {</span>
+<span class="cstat-no" title="statement not covered">            errorCallback("User didn't capture a photo.");</span>
+            // Remove the focus handler if present
+<span class="cstat-no" title="statement not covered">            window.removeEventListener("focus", savePhotoOnFocus);</span>
+<span class="cstat-no" title="statement not covered">            return;</span>
+        }
+<span class="cstat-no" title="statement not covered">        cameraPicture = picture;</span>
+&nbsp;
+        // If not windows 10, call savePhoto() now. If windows 10, wait for the app to be in focus again
+<span class="cstat-no" title="statement not covered">        if (navigator.appVersion.indexOf('Windows Phone 10.0') &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered">            savePhoto(cameraPicture, {</span>
+                destinationType: destinationType,
+                targetHeight: targetHeight,
+                targetWidth: targetWidth,
+                encodingType: encodingType,
+                saveToPhotoAlbum: saveToPhotoAlbum
+            }, successCallback, errorCallback);
+        }
+    }, <span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">        errorCallback("Fail to capture a photo.");</span>
+<span class="cstat-no" title="statement not covered">        window.removeEventListener("focus", savePhotoOnFocus);</span>
+    });
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function savePhoto(picture, options, successCallback, errorCallback) {</span>
+    // success callback for capture operation
+<span class="cstat-no" title="statement not covered">    var success = <span class="fstat-no" title="function not covered">function(picture) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (options.destinationType == Camera.DestinationType.FILE_URI || options.destinationType == Camera.DestinationType.NATIVE_URI) {</span>
+<span class="cstat-no" title="statement not covered">            if (options.targetHeight &gt; 0 &amp;&amp; options.targetWidth &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">                resizeImage(successCallback, errorCallback, picture, options.targetWidth, options.targetHeight, options.encodingType);</span>
+            } else {
+<span class="cstat-no" title="statement not covered">                picture.copyAsync(getAppData().localFolder, picture.name, OptUnique).done(<span class="fstat-no" title="function not covered">function (copiedFile) {</span></span>
+<span class="cstat-no" title="statement not covered">                    successCallback("ms-appdata:///local/" + copiedFile.name);</span>
+                },errorCallback);
+            }
+        } else {
+<span class="cstat-no" title="statement not covered">            if (options.targetHeight &gt; 0 &amp;&amp; options.targetWidth &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">                resizeImageBase64(successCallback, errorCallback, picture, options.targetWidth, options.targetHeight);</span>
+            } else {
+<span class="cstat-no" title="statement not covered">                fileIO.readBufferAsync(picture).done(<span class="fstat-no" title="function not covered">function(buffer) {</span></span>
+<span class="cstat-no" title="statement not covered">                    var strBase64 = encodeToBase64String(buffer);</span>
+<span class="cstat-no" title="statement not covered">                    picture.deleteAsync().done(<span class="fstat-no" title="function not covered">function() {</span></span>
+<span class="cstat-no" title="statement not covered">                        successCallback(strBase64);</span>
+                    }, <span class="fstat-no" title="function not covered">function(err) {</span>
+<span class="cstat-no" title="statement not covered">                        errorCallback(err);</span>
+                    });
+                }, errorCallback);
+            }
+        }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (!options.saveToPhotoAlbum) {</span>
+<span class="cstat-no" title="statement not covered">        success(picture);</span>
+<span class="cstat-no" title="statement not covered">        return;</span>
+    } else {
+<span class="cstat-no" title="statement not covered">        var savePicker = new Windows.Storage.Pickers.FileSavePicker();</span>
+<span class="cstat-no" title="statement not covered">        var saveFile = <span class="fstat-no" title="function not covered">function(file) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (file) {</span>
+                // Prevent updates to the remote version of the file until we're done
+<span class="cstat-no" title="statement not covered">                Windows.Storage.CachedFileManager.deferUpdates(file);</span>
+<span class="cstat-no" title="statement not covered">                picture.moveAndReplaceAsync(file)</span>
+                    .then(<span class="fstat-no" title="function not covered">function() {</span>
+                        // Let Windows know that we're finished changing the file so
+                        // the other app can update the remote version of the file.
+<span class="cstat-no" title="statement not covered">                        return Windows.Storage.CachedFileManager.completeUpdatesAsync(file);</span>
+                    })
+                    .done(<span class="fstat-no" title="function not covered">function(updateStatus) {</span>
+<span class="cstat-no" title="statement not covered">                        if (updateStatus === Windows.Storage.Provider.FileUpdateStatus.complete) {</span>
+<span class="cstat-no" title="statement not covered">                            success(picture);</span>
+                        } else {
+<span class="cstat-no" title="statement not covered">                            errorCallback("File update status is not complete.");</span>
+                        }
+                    }, errorCallback);
+            } else {
+<span class="cstat-no" title="statement not covered">                errorCallback("Failed to select a file.");</span>
+            }
+        };
+<span class="cstat-no" title="statement not covered">        savePicker.suggestedStartLocation = pickerLocId.picturesLibrary;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        if (options.encodingType === Camera.EncodingType.PNG) {</span>
+<span class="cstat-no" title="statement not covered">            savePicker.fileTypeChoices.insert("PNG", [".png"]);</span>
+<span class="cstat-no" title="statement not covered">            savePicker.suggestedFileName = "photo.png";</span>
+        } else {
+<span class="cstat-no" title="statement not covered">            savePicker.fileTypeChoices.insert("JPEG", [".jpg"]);</span>
+<span class="cstat-no" title="statement not covered">            savePicker.suggestedFileName = "photo.jpg";</span>
+        }
+&nbsp;
+        // If Windows Phone 8.1 use pickSaveFileAndContinue()
+<span class="cstat-no" title="statement not covered">        if (navigator.appVersion.indexOf('Windows Phone 8.1') &gt;= 0) {</span>
+            /*
+                Need to add and remove an event listener to catch activation state
+                Using FileSavePicker will suspend the app and it's required to catch the pickSaveFileContinuation
+                https://msdn.microsoft.com/en-us/library/windows/apps/xaml/dn631755.aspx
+            */
+<span class="cstat-no" title="statement not covered">            var fileSaveHandler = <span class="fstat-no" title="function not covered">function(eventArgs) {</span></span>
+<span class="cstat-no" title="statement not covered">                if (eventArgs.kind === Windows.ApplicationModel.Activation.ActivationKind.pickSaveFileContinuation) {</span>
+<span class="cstat-no" title="statement not covered">                    var file = eventArgs.file;</span>
+<span class="cstat-no" title="statement not covered">                    saveFile(file);</span>
+<span class="cstat-no" title="statement not covered">                    webUIApp.removeEventListener("activated", fileSaveHandler);</span>
+                }
+            };
+<span class="cstat-no" title="statement not covered">            webUIApp.addEventListener("activated", fileSaveHandler);</span>
+<span class="cstat-no" title="statement not covered">            savePicker.pickSaveFileAndContinue();</span>
+        } else {
+<span class="cstat-no" title="statement not covered">            savePicker.pickSaveFileAsync()</span>
+                .done(saveFile, errorCallback);
+        }
+    }
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered">require("cordova/exec/proxy").add("Camera",module.exports);</span>
 &nbsp;
 &nbsp;</pre></td></tr>
 </tbody></table></pre>
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Wed Apr 19 2017 02:18:45 GMT+0000 (UTC)</div>
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Thu Apr 27 2017 20:33:45 GMT+0000 (UTC)</div>
 </div>
 
 
